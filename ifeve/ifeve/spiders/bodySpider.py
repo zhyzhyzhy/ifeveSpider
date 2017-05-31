@@ -3,6 +3,9 @@ from ifeve.items import IfeveItem
 import scrapy
 import codecs
 import sqlite3
+import tomd
+import html2text
+import markdown2
 
 class demoSpider(scrapy.Spider):
     name = "body"
@@ -25,7 +28,9 @@ class demoSpider(scrapy.Spider):
         items = cursor.fetchall()
     
         body = response.css("div.clearfix").css("div.post_content").extract_first().encode("utf-8")
-
+        # body = tomd.Tomd(body).markdown
+        body = html2text.html2text(body.decode("utf-8"))
+        body = markdown2.markdown(body)
         for item in items:
             cursor.execute('update ifeve set body = ? where id = ?', (body, item[0]))
         conn.commit()

@@ -2,15 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <title>{{ article[1] }}</title>
-    <script src="../static/js/jquery-3.2.1.min.js"></script>
-    <script src="../static/js/bootstrap.js"></script>
-    <link href="../static/css/bootstrap.css" rel="script" type="text/css">
-    <link rel="stylesheet" href="../static/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../static/css/github-markdown.css" type="text/css" />
 </head>
+<style>
+	.markdown-body {
+		box-sizing: border-box;
+		min-width: 200px;
+		max-width: 980px;
+		margin: 0 auto;
+		padding: 45px;
+	}
+</style>
 <body>
-<div class="container">
+<article class="markdown-body">
     {{ article[4]|safe }}
-</div>
+</article>
 </body>
 </html>
