@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>My Webpage</title>
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/bootstrap.js"></script>
+    <link href="../static/css/bootstrap.css" rel="script" type="text/css">
+</head>
+<script>
+    function deleteById(id) {
+        $.ajax({
+            type:"delete",
+            url:"http://localhost:5000/delete/" + id,
+            success: function () {
+                location.reload(true)
+            }
+        })
+    }
+</script>
+<body>
+    {% for var in values %}
+        <a href="http://localhost:5000/article/{{ var[0] }}">{{ var[1] }}</a>
+        <button onclick="deleteById({{ var[0] }})" type="button">delete</button>
+        <br>
+    {% endfor %}
+</body>
+</html>
