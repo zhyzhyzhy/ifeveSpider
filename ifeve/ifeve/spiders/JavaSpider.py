@@ -11,7 +11,7 @@ class demoSpider(scrapy.Spider):
     def start_requests(self):
         conn = sqlite3.connect('ifeve.db')
         cursor = conn.cursor()
-        cursor.execute('create table ifeve (id integer primary key autoincrement, title varchar(256), url varchar(256), category varchar(32), body text)')
+        cursor.execute('create table ifeve (id integer primary key autoincrement, title varchar(256), url varchar(256), category varchar(32), body text, fav integer)')
         cursor.close()
         conn.commit()
         conn.close()
@@ -34,7 +34,7 @@ class demoSpider(scrapy.Spider):
                 ifeveItem['category'] = category
                 ifeveItem['url']  = post.css("h3.title").css("a::attr(href)").extract_first()
                 ifeveItem['title'] = post.css("h3.title").css("a::text").extract_first()
-                cursor.execute('insert into ifeve (id, title, url, category, body) values (?, ?, ?, ?, ?)', (None, ifeveItem['title'], ifeveItem['url'], ifeveItem['category'], "1")) 
+                cursor.execute('insert into ifeve (id, title, url, category, body, fav) values (?, ?, ?, ?, ?,?)', (None, ifeveItem['title'], ifeveItem['url'], ifeveItem['category'], "1","0"))
                 cursor.close()
                 conn.commit()
                 conn.close()
