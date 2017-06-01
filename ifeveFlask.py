@@ -93,12 +93,24 @@ def read_article(id):
     return render_template("article.html", article=value)
 
 
-@app.route("/article/<id>", methods=["put"])
+@app.route("/article/addToFav/<id>", methods=["put"])
 @login_required
 def add_to_fav(id):
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute("UPDATE ifeve SET fav = 1 WHERE id = ?", (id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return 'ok'
+
+
+@app.route("/article/removeFromFav/<id>", methods=["put"])
+@login_required
+def remove_from_fav(id):
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("UPDATE ifeve SET fav = 0 WHERE id = ?", (id,))
     conn.commit()
     cursor.close()
     conn.close()
@@ -114,7 +126,7 @@ def fav():
     values = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template("index.html", values=values)
+    return render_template("fav.html", values=values)
 
 
 if __name__ == "__main__":

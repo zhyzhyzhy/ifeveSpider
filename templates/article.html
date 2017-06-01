@@ -16,12 +16,25 @@
         margin: 0 auto;
         padding: 45px;
     }
+
+    body {
+        background-color: #f5f5d5
+    }
 </style>
 <script>
     function addToFav(id) {
         $.ajax({
             type: "put",
-            url: "http://localhost:5000/article/" + id,
+            url: "http://localhost:5000/article/addToFav/" + id,
+            success: function () {
+                alert("success")
+            }
+        })
+    }
+    function removeFromFav(id) {
+        $.ajax({
+            type: "put",
+            url: "http://localhost:5000/article/removeFromFav/" + id,
             success: function () {
                 alert("success")
             }
@@ -32,6 +45,7 @@
 
 <article class="markdown-body">
     <button onclick="addToFav({{ article[0] }})" type="button">加入收藏</button>
+    <button onclick="removeFromFav({{ article[0] }})" type="button" class="btn btn-info btn-sm">移出收藏</button>
     {{ article[4]|safe }}
 </article>
 </body>
