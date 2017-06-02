@@ -1,3 +1,4 @@
+### 
 把ifeve的文章爬下来，内容重新排版一下，主要是想适配手机看看   
 顺便sort一下好分类，也可以有从阅读列表删除或者加收藏    
 现在好像也不是很好用。。。  
@@ -7,3 +8,10 @@ thinks for
 * [flask](https://github.com/pallets/flask)  
 * [html2text](https://github.com/aaronsw/html2text)  
 * [markdown2](https://github.com/trentm/python-markdown2)  
+
+### 一个截图
+![demo](demo.png)  
+![demo1](demo1.png)  
+![demo2](demo2.png)  
+
+
